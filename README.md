@@ -1,7 +1,8 @@
 # UltraMadMan.github.io
-## Tic Tac Toe
+## ^ Put this link in a URL to load up site
 
-## Play against AI
+## Tic Tac Toe
+### Play against AI
 2 Difficulties:
 * Easy
 * Impossible
