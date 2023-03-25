@@ -1,8 +1,7 @@
 # UltraMadMan.github.io
-Tic Tac Toe
+## Tic Tac Toe
 
-Play against AI
-
+## Play against AI
 2 Difficulties:
 * Easy
 * Impossible
