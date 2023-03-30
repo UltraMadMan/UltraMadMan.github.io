@@ -13,6 +13,7 @@ const board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 const humanPlayer = "X";
 const aiPlayer = "O";
+let checkPlayerSpam = 0;
 
 var humanWins = 0;
 var aiWins = 0;
@@ -59,6 +60,7 @@ function reset() {
     square.classList.remove(humanPlayer, aiPlayer);
   });
   currentPlayer = humanPlayer;
+  checkPlayerSpam = 0;
 }
 
 function gameResult(result) {
@@ -77,6 +79,7 @@ function gameResult(result) {
   winsLabel.textContent = "Human Wins: " + humanWins;
   tiesLabel.textContent = "Ties: " + ties;
   aiLabel.textContent = "AI Wins: " + aiWins;
+  reset();
 }
 
 resetButton.addEventListener("click", () => {
@@ -100,7 +103,8 @@ changeDifficultyButton.addEventListener("click", () => {
 });
 
 function humanTurn(index) {
-  if (board[index] !== "") {
+  checkPlayerSpam++;
+  if (board[index] !== "" && checkPlayerSpam <= 1) {
     return;
   }
   placedSound.currentTime = 0;
@@ -126,6 +130,7 @@ function humanTurn(index) {
       }
     }
   }, 5000);
+  checkPlayerSpam--;
 }
 
 function aiTurnEasy() {
