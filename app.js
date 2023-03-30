@@ -100,6 +100,9 @@ changeDifficultyButton.addEventListener("click", () => {
 });
 
 function humanTurn(index) {
+  if (board[index] != "") {
+    return;
+  }
   placedSound.currentTime = 0;
   placedSound.play();
   if (board[index] !== "") {
@@ -125,7 +128,7 @@ function humanTurn(index) {
         aiTurnImpossible();
       }
     }
-  }, 100);
+  }, 1);
 }
 
 function aiTurnEasy() {
