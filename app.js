@@ -58,8 +58,7 @@ function reset() {
     square.textContent = "";
     square.classList.remove(humanPlayer, aiPlayer);
   });
-  currentPlayer = "X";
-  reset(); // double check pass
+  currentPlayer = humanPlayer;
 }
 
 function gameResult(result) {
@@ -109,7 +108,6 @@ function humanTurn(index) {
   board[index] = humanPlayer;
   squares[index].textContent = humanPlayer;
   squares[index].classList.add(humanPlayer);
-  currentPlayer = aiPlayer;
   setTimeout(function(){
     if (checkWin(humanPlayer)) {
       gameResult("HumanWin");
@@ -120,6 +118,7 @@ function humanTurn(index) {
       alert("Draw!");
       reset();
     } else {
+      currentPlayer = aiPlayer;
       if (aiDifficulty == "Easy"){
         aiTurnEasy();
       } else if (aiDifficulty == "Impossible") {
