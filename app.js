@@ -104,8 +104,9 @@ changeDifficultyButton.addEventListener("click", () => {
 
 function humanTurn(index) {
   checkPlayerSpam++;
+  console.log(checkPlayerSpam);
   if (board[index] !== "" && checkPlayerSpam > 1) {
-    return;
+    return console.log("RETURNED");
   }
   placedSound.currentTime = 0;
   placedSound.play();
