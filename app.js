@@ -1,14 +1,19 @@
 const squares = Array.from(document.querySelectorAll(".square"));
+
 const resetButton = document.querySelector(".reset-button");
 const changeDifficultyButton = document.querySelector(".change-difficulty-button");
+
 const difficultyLabel = document.querySelector(".difficulty");
 const winsLabel = document.querySelector(".wins");
 const tiesLabel = document.querySelector(".ties");
 const aiLabel = document.querySelector(".ai");
+
 const board = ["", "", "", "", "", "", "", "", ""];
+
 let currentPlayer = "X";
 const humanPlayer = "X";
 const aiPlayer = "O";
+
 var humanWins = 0;
 var aiWins = 0;
 var ties = 0;
@@ -54,9 +59,7 @@ function reset() {
     square.classList.remove(humanPlayer, aiPlayer);
   });
   currentPlayer = "X";
-  setTimeout(() => {
-    // pass
-  }, 50);
+  reset(); // double check pass
 }
 
 function gameResult(result) {
@@ -151,7 +154,7 @@ function aiTurnEasy() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 100);
+  }, 1);
 }
 
 function aiTurnImpossible() {
@@ -185,7 +188,7 @@ function aiTurnImpossible() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 100);
+  }, 1);
 }
 
 function minimax(board, depth, isMaximizingPlayer) {
