@@ -13,7 +13,7 @@ const board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 const humanPlayer = "X";
 const aiPlayer = "O";
-let checkPlayerSpam = 0;
+let isAiActive = false;
 
 var humanWins = 0;
 var aiWins = 0;
@@ -60,7 +60,7 @@ function reset() {
     square.classList.remove(humanPlayer, aiPlayer);
   });
   currentPlayer = humanPlayer;
-  checkPlayerSpam = 0;
+  isAiActive = false;
 }
 
 function gameResult(result) {
@@ -92,21 +92,19 @@ changeDifficultyButton.addEventListener("click", () => {
   } else if (aiDifficulty == "Impossible") {
     aiDifficulty = "Easy";
   }
-  difficultyLabel.textContent = "Difficulty: " + aiDifficulty;
   humanWins = 0;
   aiWins = 0;
   ties = 0;
   winsLabel.textContent = "Human Wins: " + humanWins;
   tiesLabel.textContent = "Ties: " + ties;
   aiLabel.textContent = "AI Wins: " + aiWins;
+  difficultyLabel.textContent = "Difficulty: " + aiDifficulty;
   reset();
 });
 
 function humanTurn(index) {
-  checkPlayerSpam++;
-  console.log(checkPlayerSpam);
-  if (board[index] !== "" && checkPlayerSpam > 1) {
-    return console.log("RETURNED");
+  if (isAiActive && board[index] !== "") {
+    return;
   }
   placedSound.currentTime = 0;
   placedSound.play();
@@ -124,14 +122,14 @@ function humanTurn(index) {
       reset();
     } else {
       currentPlayer = aiPlayer;
+      isAiActive = true
       if (aiDifficulty == "Easy"){
         aiTurnEasy();
       } else if (aiDifficulty == "Impossible") {
         aiTurnImpossible();
       }
     }
-  }, 5000);
-  checkPlayerSpam--;
+  }, 500);
 }
 
 function aiTurnEasy() {
@@ -160,6 +158,7 @@ function aiTurnEasy() {
       currentPlayer = humanPlayer;
     }
   }, 100);
+  isAiActive = false;
 }
 
 function aiTurnImpossible() {
@@ -194,6 +193,7 @@ function aiTurnImpossible() {
       currentPlayer = humanPlayer;
     }
   }, 100);
+  isAiActive = false;
 }
 
 function minimax(board, depth, isMaximizingPlayer) {
