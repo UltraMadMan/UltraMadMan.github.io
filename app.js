@@ -13,6 +13,7 @@ const board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 const humanPlayer = "X";
 const aiPlayer = "O";
+let aiMakingMove = false;
 
 var humanWins = 0;
 var aiWins = 0;
@@ -59,6 +60,7 @@ function reset() {
     square.classList.remove(humanPlayer, aiPlayer);
   });
   currentPlayer = humanPlayer;
+  aiMakingMove = false;
 }
 
 function gameResult(result) {
@@ -100,14 +102,11 @@ changeDifficultyButton.addEventListener("click", () => {
 });
 
 function humanTurn(index) {
-  if (board[index] != "") {
+  if (!aiMakingMove && board[index] !== "") {
     return;
   }
   placedSound.currentTime = 0;
   placedSound.play();
-  if (board[index] !== "") {
-    return;
-  }
   board[index] = humanPlayer;
   squares[index].textContent = humanPlayer;
   squares[index].classList.add(humanPlayer);
@@ -121,6 +120,7 @@ function humanTurn(index) {
       alert("Draw!");
       reset();
     } else {
+      aiMakingMove = true;
       currentPlayer = aiPlayer;
       if (aiDifficulty == "Easy"){
         aiTurnEasy();
@@ -128,7 +128,7 @@ function humanTurn(index) {
         aiTurnImpossible();
       }
     }
-  }, 1);
+  }, 100);
 }
 
 function aiTurnEasy() {
@@ -156,7 +156,8 @@ function aiTurnEasy() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 1);
+  }, 100);
+  aiMakingMove = false;
 }
 
 function aiTurnImpossible() {
@@ -190,7 +191,8 @@ function aiTurnImpossible() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 1);
+  }, 100);
+  aiMakingMove = false;
 }
 
 function minimax(board, depth, isMaximizingPlayer) {
