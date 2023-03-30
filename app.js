@@ -54,6 +54,9 @@ function reset() {
     square.classList.remove(humanPlayer, aiPlayer);
   });
   currentPlayer = "X";
+  setTimeout(() => {
+    // pass
+  }, 50);
 }
 
 function gameResult(result) {
@@ -120,7 +123,7 @@ function humanTurn(index) {
         aiTurnImpossible();
       }
     }
-  }, 50);
+  }, 100);
 }
 
 function aiTurnEasy() {
@@ -148,7 +151,7 @@ function aiTurnEasy() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 50);
+  }, 100);
 }
 
 function aiTurnImpossible() {
@@ -182,7 +185,7 @@ function aiTurnImpossible() {
     } else {
       currentPlayer = humanPlayer;
     }
-  }, 50);
+  }, 100);
 }
 
 function minimax(board, depth, isMaximizingPlayer) {
