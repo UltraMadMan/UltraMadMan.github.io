@@ -3,6 +3,7 @@
 
 ## Tic Tac Toe
 ### Play against AI
-2 Difficulties:
+3 Difficulties:
 * Easy
 * Impossible
+* Cheating
