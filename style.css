@@ -12,7 +12,7 @@
     justify-content: center;
     height: 100vh;
     background-color: #111;
-    box-shadow: 0px 0px 10px rgb(24, 24, 24);
+    box-shadow: 0px 2px 10px rgb(24, 24, 24);
   }
   
   .title {
