@@ -109,6 +109,7 @@ function humanTurn(index) {
   board[index] = humanPlayer;
   squares[index].textContent = humanPlayer;
   squares[index].classList.add(humanPlayer);
+  currentPlayer = aiPlayer;
   setTimeout(function(){
     if (checkWin(humanPlayer)) {
       gameResult("HumanWin");
@@ -119,7 +120,6 @@ function humanTurn(index) {
       alert("Draw!");
       reset();
     } else {
-      currentPlayer = aiPlayer;
       if (aiDifficulty == "Easy"){
         aiTurnEasy();
       } else if (aiDifficulty == "Impossible") {
